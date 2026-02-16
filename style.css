@@ -1,0 +1,253 @@
+/* Add your CSS here */
+
+/* Modern font for a clean, tech feel */
+body {
+	margin: 0; /* Remove default spacing around the page */
+	font-family: "Poppins", "Segoe UI", Arial, sans-serif; /* Modern, readable font */
+}
+
+/* Keep normal sections on a white background */
+section {
+	background-color: #ffffff;
+}
+
+/* Timeline helper text styling */
+.timeline-helper {
+	text-align: center;
+	padding: 40px 20px;
+	margin: 0;
+}
+
+/* Default: show mouse message, hide touch message */
+.helper-mouse {
+	display: inline;
+}
+
+.helper-touch {
+	display: none;
+}
+
+/* On touch screens, swap the helper text */
+@media (pointer: coarse) {
+	.helper-mouse {
+		display: none;
+	}
+
+	.helper-touch {
+		display: inline;
+	}
+
+	/* Disable hover reveal on touch devices so tap toggles control it */
+	.card:hover {
+		transform: none;
+	}
+
+	.card:hover::after {
+		opacity: 0;
+	}
+
+	.card:hover p {
+		opacity: 0;
+		font-size: 16px;
+	}
+}
+
+/* Dark green gradient background behind the hero section */
+header {
+	background: linear-gradient(135deg, #001628, #0068b5);
+	color: #ffffff; /* High contrast text */
+	text-align: center; /* Center the heading and description text */
+	height: 100vh; /* Always match the full viewport height */
+	display: flex; /* Center content vertically and horizontally */
+	align-items: center;
+	justify-content: center;
+	padding: 80px 20px; /* More open spacing on all devices */
+	box-sizing: border-box; /* Keep padding inside the full viewport height */
+	animation: fadeIn 1.2s ease-out; /* Subtle fade-in on load */
+}
+
+/* Space out the image, heading, and description */
+header div {
+	display: flex; /* Stack hero content with even spacing */
+	flex-direction: column;
+	gap: 20px; /* Space between logo, heading, and text */
+	padding: 12px 0; /* Extra breathing room inside the hero */
+	max-width: 900px; /* Keep hero text readable */
+}
+
+/* Make the Intel logo large but not overwhelming */
+header img {
+	width: 240px; /* Balanced Intel logo size */
+	height: auto; /* Keep the image proportions */
+	display: block; /* Allow margin auto to center the image */
+	margin: 0 auto; /* Center the image */
+	padding-bottom: 20px; /* Spacing now handled by the hero content gap */
+}
+
+/* Improve typography hierarchy inside the hero */
+header h1 {
+	font-size: 52px; /* Large, bold headline */
+	font-weight: 700;
+	margin: 12px 0;
+	letter-spacing: 0.3px; /* Subtle polish for the headline */
+}
+
+header p {
+	font-size: 20px; /* Clear, readable subheading */
+	max-width: 720px; /* Keep text readable */
+	margin: 0 auto;
+	line-height: 1.5; /* Improve readability */
+}
+
+/* Timeline layout: horizontal cards */
+.timeline {
+	display: flex; /* Lay cards out in a row */
+	gap: 20px; /* Space between cards */
+	padding: 40px 20px;
+	overflow-x: auto; /* Allow scroll if cards overflow */
+	scroll-snap-type: x mandatory; /* Snap cards while scrolling */
+	scroll-behavior: smooth; /* Smooth horizontal scroll */
+}
+
+/* Individual timeline card */
+.card {
+	background-color: #ffffff;
+	border: 1px solid #e6e6e6;
+	border-radius: 2px;
+	padding: 28px;
+	min-width: 260px; /* Keep a comfortable card width */
+	min-height: 300px; /* Make cards taller */
+	box-shadow: 0 6px 16px #0068b51a; /* Subtle shadow with hero blue tint */
+	display: flex; /* Use flexbox inside each card */
+	flex-direction: column;
+	position: relative; /* Anchor overlay and text */
+	overflow: hidden; /* Keep image and hover scale tidy */
+	transition: transform 0.5s ease; /* Smooth hover growth */
+	scroll-snap-align: start; /* Snap each card to the start */
+	cursor: pointer; /* Show this is clickable */
+}
+
+/* Grow the card slightly on hover */
+.card:hover {
+	transform: scale(1.03);
+}
+
+/* Blue overlay on hover */
+.card::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 104, 181, 0.95); /* Less transparent hero blue */
+	opacity: 0;
+	transition: opacity 0.25s ease;
+}
+
+.card:hover::after {
+	opacity: 1;
+}
+
+/* Keep the overlay visible when a card is toggled open */
+.card.is-open::after {
+	opacity: 1;
+}
+
+/* Keep headings at the top of each card */
+.card h2 {
+	margin: 0 0 6px 0;
+	color: #004a8f; /* Darker blue for the year */
+}
+
+.card h3 {
+	margin: 0 0 12px 0;
+}
+
+/* Card images */
+.card img {
+	width: 100%;
+	height: 70%; /* Keep the full image without cropping */
+	flex: 0 0 auto; /* Keep the image at its natural height */
+	border-radius: 2px;
+	margin-bottom: 0;
+}
+
+/* Hide descriptions until hover */
+.card p {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: 0; /* Remove extra space so it fits the card */
+	padding: 20px;
+	color: #ffffff; /* High contrast on blue overlay */
+	display: block; /* Start text from the top-left */
+	text-align: left;
+	font-size: 16px; /* Base size before hover */
+	opacity: 0;
+	transition: opacity 0.25s ease;
+	z-index: 1; /* Sit above the overlay */
+}
+
+.card:hover p {
+	opacity: 1;
+	font-size: 18px; /* Larger text on hover */
+}
+
+/* Keep the description visible when a card is toggled open */
+.card.is-open p {
+	opacity: 1;
+	font-size: 18px;
+}
+
+/* Responsive tweaks for smaller screens */
+@media (max-width: 768px) {
+	.timeline {
+		flex-direction: column; /* Stack cards vertically */
+		gap: 14px;
+		padding: 24px 16px;
+		overflow-x: visible; /* No horizontal scroll on small screens */
+		scroll-snap-type: none; /* Disable snapping when stacked */
+	}
+
+	.card {
+		min-width: 220px; /* Smaller cards on tablets */
+		min-height: 260px;
+		padding: 20px;
+	}
+}
+
+@media (max-width: 480px) {
+	.timeline {
+		gap: 12px;
+		padding: 20px 12px;
+	}
+
+	.card {
+		min-width: 200px; /* Smaller cards on phones */
+		min-height: 220px;
+		padding: 16px;
+	}
+
+	.card h2 {
+		font-size: 18px;
+	}
+
+	.card h3 {
+		font-size: 16px;
+	}
+}
+
+/* Simple fade-in animation */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
