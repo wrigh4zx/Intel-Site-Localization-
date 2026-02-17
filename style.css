@@ -45,7 +45,7 @@ section {
 
 .column-card i {
 	font-size: 22px;
-	margin-left: 8px; /* Space between the icon and text in RTL */
+	margin-inline-end: 8px; /* Space between the icon and text */
 	color: #0068b5;
 }
 
@@ -54,8 +54,7 @@ section {
 	display: inline-block;
 	margin-top: 12px;
 	padding: 8px 14px;
-	padding-left: auto; /* Smaller left side spacing */
-  margin-left: auto;
+	align-self: flex-start; /* Default button position for LTR */
 	background-color: #005a9e; /* Slightly darker blue for contrast */
 	color: #ffffff;
 	text-decoration: none;
@@ -221,6 +220,34 @@ header p {
 	scroll-snap-type: x mandatory; /* Snap cards while scrolling */
 	scroll-behavior: smooth; /* Smooth horizontal scroll */
 	background-color: #f7fafd; /* Light blue background strip */
+}
+
+/* RTL support: flip layout order and align text correctly */
+[dir="rtl"] body {
+	text-align: right; /* Default text alignment for RTL pages */
+}
+
+[dir="rtl"] header {
+	text-align: right; /* Keep hero text aligned with RTL flow */
+}
+
+[dir="rtl"] header img {
+	margin: 0 auto; /* Keep the logo centered for balance */
+}
+
+[dir="rtl"] .timeline {
+	flex-direction: row-reverse; /* Show the newest card on the left */
+}
+
+[dir="rtl"] .card h2,
+[dir="rtl"] .card h3,
+[dir="rtl"] .column-card h3,
+[dir="rtl"] .timeline-helper {
+	text-align: right; /* Match headings to RTL flow */
+}
+
+[dir="rtl"] .learn-more {
+	align-self: flex-end; /* Move the button to the right in RTL */
 }
 
 /* Individual timeline card */

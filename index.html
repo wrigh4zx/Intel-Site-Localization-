@@ -353,6 +353,43 @@
 
   <!-- Bootstrap bundle (required for accordion interactivity) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>const rtlLanguages=["ar","he","fa","ur"],root=document.documentElement,applyDirection=()=>{const e=(root.getAttribute("lang")||"").toLowerCase(),t=e.split("-")[0],o=(root.getAttribute("dir")||"").toLowerCase(),r="rtl"===o||"ltr"===o,a=r?"rtl"===o:rtlLanguages.includes(t);root.setAttribute("dir",a?"rtl":"ltr"),document.body.setAttribute("dir",a?"rtl":"ltr")};applyDirection();new MutationObserver((e=>{e.some((e=>"lang"===e.attributeName||"dir"===e.attributeName))&&applyDirection()})).observe(root,{attributes:!0});window.matchMedia("(pointer: coarse)").matches&&document.querySelectorAll(".card").forEach((e=>{e.addEventListener("click",(()=>{const t=e.classList.contains("is-open");document.querySelectorAll(".card").forEach((e=>{e.classList.remove("is-open")})),t||e.classList.add("is-open")}))}));</script>
+  <script>
+    const rtlLanguages = ["ar", "he", "fa", "ur"];
+    const root = document.documentElement;
+
+    const applyDirection = () => {
+      const lang = (root.getAttribute("lang") || "").toLowerCase();
+      const baseLang = lang.split("-")[0];
+      const dirAttr = (root.getAttribute("dir") || "").toLowerCase();
+      const hasDirAttr = dirAttr === "rtl" || dirAttr === "ltr";
+      const isRtl = hasDirAttr ? dirAttr === "rtl" : rtlLanguages.includes(baseLang);
+
+      root.setAttribute("dir", isRtl ? "rtl" : "ltr");
+      document.body.setAttribute("dir", isRtl ? "rtl" : "ltr");
+    };
+
+    applyDirection();
+
+    new MutationObserver((mutations) => {
+      if (mutations.some((m) => m.attributeName === "lang" || m.attributeName === "dir")) {
+        applyDirection();
+      }
+    }).observe(root, { attributes: true });
+
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      document.querySelectorAll(".card").forEach((card) => {
+        card.addEventListener("click", () => {
+          const isOpen = card.classList.contains("is-open");
+          document.querySelectorAll(".card").forEach((item) => {
+            item.classList.remove("is-open");
+          });
+
+          if (!isOpen) {
+            card.classList.add("is-open");
+          }
+        });
+      });
+    }
+  </script>
 </body>
 </html>
