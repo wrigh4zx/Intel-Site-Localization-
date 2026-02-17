@@ -5,27 +5,35 @@ body {
 	margin: 0; /* Remove default spacing around the page */
 	font-family: "Poppins", "Segoe UI", Arial, sans-serif; /* Modern, readable font */
 	color: #1a1a1a; /* Darker text for better contrast */
+	background-color: #f2f6fb; /* Soft blue-white background */
 }
 
 /* Keep normal sections on a white background */
 section {
-	background-color: #ffffff;
+	background-color: #ffffff; /* Keep content panels white */
 }
 
 /* Three-column section layout */
 .three-column {
 	padding: 50px 20px; /* Comfortable spacing around the section */
-	background-color: #f7f9fc; /* Light contrast to separate sections */
+	background-color: #eef4fb; /* Light blue tint for theme */
 }
 
 /* Card-like styling for each column */
 .column-card {
 	background-color: #ffffff;
-	border: 1px solid #e6e6e6;
+	border: 1px solid #d9e6f5; /* Blue-tinted border */
 	border-radius: 6px;
 	padding: 24px;
-	box-shadow: 0 6px 14px #0068b51a; /* Soft shadow in Intel blue tint */
+	box-shadow: 0 8px 16px #0068b51a; /* Soft shadow in Intel blue tint */
 	height: 100%; /* Make cards equal height in the row */
+	display: flex; /* Stack content so the button can sit at the bottom */
+	flex-direction: column;
+}
+
+/* Push the Learn More link to the bottom of each card */
+.column-card .learn-more {
+	margin-top: auto;
 }
 
 /* Icon + heading styling */
@@ -46,6 +54,8 @@ section {
 	display: inline-block;
 	margin-top: 12px;
 	padding: 8px 14px;
+	padding-left: auto; /* Smaller left side spacing */
+  margin-left: auto;
 	background-color: #005a9e; /* Slightly darker blue for contrast */
 	color: #ffffff;
 	text-decoration: none;
@@ -55,6 +65,18 @@ section {
 
 .learn-more:hover {
 	background-color: #003a78;
+  color: #ffffff;
+}
+
+/* Make general links match the blue theme */
+a {
+	color: #005a9e;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #003a78;
+	text-decoration: underline;
 }
 
 /* Footer links with stronger contrast */
@@ -73,6 +95,7 @@ footer a:hover {
 	text-align: center;
 	padding: 40px 20px;
 	margin: 0;
+	color: #003a78; /* Blue helper text */
 }
 
 /* Default: show mouse message, hide touch message */
@@ -156,11 +179,17 @@ header p {
 	line-height: 1.5; /* Improve readability */
 }
 
-/* Make newsletter inputs read RTL */
-#subscriber-name,
-#subscriber-email {
+/* Make newsletter inputs follow the page direction */
+[dir="rtl"] #subscriber-name,
+[dir="rtl"] #subscriber-email {
 	direction: rtl;
 	text-align: right;
+}
+
+[dir="ltr"] #subscriber-name,
+[dir="ltr"] #subscriber-email {
+	direction: ltr;
+	text-align: left;
 }
 
 /* Make the newsletter input boxes smaller and centered */
@@ -173,7 +202,14 @@ header p {
 	display: block;
 	max-width: 420px;
 	margin: 0 auto 6px;
+}
+
+[dir="rtl"] .form-label {
 	text-align: right;
+}
+
+[dir="ltr"] .form-label {
+	text-align: left;
 }
 
 /* Timeline layout: horizontal cards */
@@ -184,17 +220,18 @@ header p {
 	overflow-x: auto; /* Allow scroll if cards overflow */
 	scroll-snap-type: x mandatory; /* Snap cards while scrolling */
 	scroll-behavior: smooth; /* Smooth horizontal scroll */
+	background-color: #f7fafd; /* Light blue background strip */
 }
 
 /* Individual timeline card */
 .card {
 	background-color: #ffffff;
-	border: 1px solid #e6e6e6;
+	border: 1px solid #d9e6f5; /* Blue-tinted border */
 	border-radius: 2px;
 	padding: 28px;
 	min-width: 260px; /* Keep a comfortable card width */
 	min-height: 300px; /* Make cards taller */
-	box-shadow: 0 6px 16px #0068b51a; /* Subtle shadow with hero blue tint */
+	box-shadow: 0 8px 16px #0068b51a; /* Subtle shadow with hero blue tint */
 	display: flex; /* Use flexbox inside each card */
 	flex-direction: column;
 	position: relative; /* Anchor overlay and text */
@@ -217,7 +254,7 @@ header p {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background-color: rgba(0, 104, 181, 0.95); /* Less transparent hero blue */
+	background-color: rgba(0, 90, 158, 0.95); /* Less transparent hero blue */
 	opacity: 0;
 	transition: opacity 0.25s ease;
 }
@@ -264,12 +301,21 @@ header p {
 	padding: 20px;
 	color: #ffffff; /* High contrast on blue overlay */
 	display: block; /* Start text from the top-left */
-	text-align: right; /* RTL text alignment */
-	direction: rtl; /* Force RTL flow inside the overlay */
 	font-size: 14px; /* Base size before hover */
 	opacity: 0;
 	transition: opacity 0.25s ease;
 	z-index: 1; /* Sit above the overlay */
+}
+
+/* Let card descriptions follow the page direction */
+[dir="rtl"] .card p {
+	text-align: right;
+	direction: rtl;
+}
+
+[dir="ltr"] .card p {
+	text-align: left;
+	direction: ltr;
 }
 
 .card:hover p {

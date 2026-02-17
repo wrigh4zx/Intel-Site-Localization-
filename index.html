@@ -9,9 +9,14 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
   />
+  <!-- Bootstrap Icons for simple, beginner-friendly icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body dir="rtl">
+<body dir="ltr">
 
   <!-- Header / Hero Section -->
   <header>
@@ -157,36 +162,130 @@
           <!-- Column 1 -->
           <div class="col-12 col-md-4">
             <div class="column-card h-100">
-              <h3>Global Impact</h3>
+              <!-- Icon + heading for quick visual scanning -->
+              <h3><i class="bi bi-globe2" aria-hidden="true"></i>Global Impact</h3>
               <p>
                 Intel partners worldwide to reduce emissions and accelerate
                 clean energy across the technology ecosystem
               </p>
-              <a class="learn-more" href="#">Learn More</a>
+              <a class="learn-more" href="https://www.intel.com/content/www/us/en/environment/intel-and-the-environment.html">Learn More</a>
             </div>
           </div>
 
           <!-- Column 2 -->
           <div class="col-12 col-md-4">
             <div class="column-card h-100">
-              <h3>Water Stewardship</h3>
+              <!-- Icon + heading for quick visual scanning -->
+              <h3><i class="bi bi-droplet" aria-hidden="true"></i>Water Stewardship</h3>
               <p>
                 Our water strategy focuses on conservation, restoration, and
                 community partnerships in water-stressed regions
               </p>
-              <a class="learn-more" href="#">Learn More</a>
+              <a class="learn-more" href="https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2025-04/global-water-policy-2025.pdf">Learn More</a>
             </div>
           </div>
 
           <!-- Column 3 -->
           <div class="col-12 col-md-4">
             <div class="column-card h-100">
-              <h3>Circular Economy</h3>
+              <!-- Icon + heading for quick visual scanning -->
+              <h3><i class="bi bi-recycle" aria-hidden="true"></i>Circular Economy</h3>
               <p>
                 We design products and processes to reduce waste, reuse materials,
                 and extend product life cycles
               </p>
-              <a class="learn-more" href="#">Learn More</a>
+              <a class="learn-more" href="https://www.techtimes.com/articles/283846/20221123/pr-intel-supports-circular-economy.htm#:~:text=In%202021%2C%20Intel%27s%20circularity%20efforts%20delivered%20over%20%24100,more%20than%20130%2C000%20metric%20tons%20of%20manufacturing%20waste.">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accordion Section (Bootstrap) -->
+    <section class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-3">Sustainability FAQs</h2>
+        <p class="text-center mb-4">
+          Click a question to reveal a short answer.
+        </p>
+
+        <!-- Bootstrap accordion for beginner-friendly interactivity -->
+        <div class="accordion" id="sustainabilityFaqs">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeadingOne">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faqCollapseOne"
+                aria-expanded="true"
+                aria-controls="faqCollapseOne"
+              >
+                What does "sustainability" mean at Intel?
+              </button>
+            </h2>
+            <div
+              id="faqCollapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="faqHeadingOne"
+              data-bs-parent="#sustainabilityFaqs"
+            >
+              <div class="accordion-body">
+                Intel focuses on reducing emissions, saving water, and designing
+                products that use resources more responsibly.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeadingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faqCollapseTwo"
+                aria-expanded="false"
+                aria-controls="faqCollapseTwo"
+              >
+                Why is renewable electricity important?
+              </button>
+            </h2>
+            <div
+              id="faqCollapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqHeadingTwo"
+              data-bs-parent="#sustainabilityFaqs"
+            >
+              <div class="accordion-body">
+                Renewable electricity reduces carbon emissions and helps power
+                Intel facilities with cleaner energy.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeadingThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faqCollapseThree"
+                aria-expanded="false"
+                aria-controls="faqCollapseThree"
+              >
+                How can students support sustainability?
+              </button>
+            </h2>
+            <div
+              id="faqCollapseThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="faqHeadingThree"
+              data-bs-parent="#sustainabilityFaqs"
+            >
+              <div class="accordion-body">
+                Start small: save energy, recycle electronics, and learn how
+                technology can solve environmental challenges.
+              </div>
             </div>
           </div>
         </div>
@@ -252,53 +351,8 @@
     </div>
   </footer>
 
-  <script>
-    // Detect language or direction changes (for example, after translation)
-    const rtlLanguages = ["ar", "he", "fa", "ur"];
-    const root = document.documentElement;
-
-    const applyDirection = () => {
-      const lang = (root.getAttribute("lang") || "").toLowerCase();
-      const langCode = lang.split("-")[0];
-      const isRtl = rtlLanguages.includes(langCode) || root.getAttribute("dir") === "rtl";
-
-      root.setAttribute("dir", isRtl ? "rtl" : "ltr");
-    };
-
-    applyDirection();
-
-    const observer = new MutationObserver((mutations) => {
-      const hasLangOrDirChange = mutations.some((mutation) =>
-        mutation.attributeName === "lang" || mutation.attributeName === "dir"
-      );
-
-      if (hasLangOrDirChange) {
-        applyDirection();
-      }
-    });
-
-    observer.observe(root, { attributes: true });
-
-    // On touch devices, tap a card to toggle its details.
-    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
-
-    if (isTouchDevice) {
-      const cards = document.querySelectorAll(".card");
-
-      cards.forEach((card) => {
-        card.addEventListener("click", () => {
-          const isOpen = card.classList.contains("is-open");
-
-          cards.forEach((otherCard) => {
-            otherCard.classList.remove("is-open");
-          });
-
-          if (!isOpen) {
-            card.classList.add("is-open");
-          }
-        });
-      });
-    }
-  </script>
+  <!-- Bootstrap bundle (required for accordion interactivity) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>const rtlLanguages=["ar","he","fa","ur"],root=document.documentElement,applyDirection=()=>{const e=(root.getAttribute("lang")||"").toLowerCase(),t=e.split("-")[0],o=(root.getAttribute("dir")||"").toLowerCase(),r="rtl"===o||"ltr"===o,a=r?"rtl"===o:rtlLanguages.includes(t);root.setAttribute("dir",a?"rtl":"ltr"),document.body.setAttribute("dir",a?"rtl":"ltr")};applyDirection();new MutationObserver((e=>{e.some((e=>"lang"===e.attributeName||"dir"===e.attributeName))&&applyDirection()})).observe(root,{attributes:!0});window.matchMedia("(pointer: coarse)").matches&&document.querySelectorAll(".card").forEach((e=>{e.addEventListener("click",(()=>{const t=e.classList.contains("is-open");document.querySelectorAll(".card").forEach((e=>{e.classList.remove("is-open")})),t||e.classList.add("is-open")}))}));</script>
 </body>
 </html>
