@@ -4,11 +4,68 @@
 body {
 	margin: 0; /* Remove default spacing around the page */
 	font-family: "Poppins", "Segoe UI", Arial, sans-serif; /* Modern, readable font */
+	color: #1a1a1a; /* Darker text for better contrast */
 }
 
 /* Keep normal sections on a white background */
 section {
 	background-color: #ffffff;
+}
+
+/* Three-column section layout */
+.three-column {
+	padding: 50px 20px; /* Comfortable spacing around the section */
+	background-color: #f7f9fc; /* Light contrast to separate sections */
+}
+
+/* Card-like styling for each column */
+.column-card {
+	background-color: #ffffff;
+	border: 1px solid #e6e6e6;
+	border-radius: 6px;
+	padding: 24px;
+	box-shadow: 0 6px 14px #0068b51a; /* Soft shadow in Intel blue tint */
+	height: 100%; /* Make cards equal height in the row */
+}
+
+/* Icon + heading styling */
+.column-card h3 {
+	margin: 0 0 12px 0;
+	font-size: 20px;
+	color: #003a78;
+}
+
+.column-card i {
+	font-size: 22px;
+	margin-left: 8px; /* Space between the icon and text in RTL */
+	color: #0068b5;
+}
+
+/* Styled Learn More links */
+.learn-more {
+	display: inline-block;
+	margin-top: 12px;
+	padding: 8px 14px;
+	background-color: #005a9e; /* Slightly darker blue for contrast */
+	color: #ffffff;
+	text-decoration: none;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.learn-more:hover {
+	background-color: #003a78;
+}
+
+/* Footer links with stronger contrast */
+footer a {
+	color: #003a78;
+	text-decoration: none;
+}
+
+footer a:hover {
+	color: #001628;
+	text-decoration: underline;
 }
 
 /* Timeline helper text styling */
@@ -99,6 +156,26 @@ header p {
 	line-height: 1.5; /* Improve readability */
 }
 
+/* Make newsletter inputs read RTL */
+#subscriber-name,
+#subscriber-email {
+	direction: rtl;
+	text-align: right;
+}
+
+/* Make the newsletter input boxes smaller and centered */
+.form-control {
+	max-width: 420px;
+	margin: 0 auto;
+}
+
+.form-label {
+	display: block;
+	max-width: 420px;
+	margin: 0 auto 6px;
+	text-align: right;
+}
+
 /* Timeline layout: horizontal cards */
 .timeline {
 	display: flex; /* Lay cards out in a row */
@@ -158,19 +235,22 @@ header p {
 .card h2 {
 	margin: 0 0 6px 0;
 	color: #004a8f; /* Darker blue for the year */
+	font-size: 20px; /* Slightly smaller heading */
 }
 
 .card h3 {
 	margin: 0 0 12px 0;
+	font-size: 18px; /* Slightly smaller subheading */
 }
 
 /* Card images */
 .card img {
 	width: 100%;
-	height: 70%; /* Keep the full image without cropping */
+	height: 160px; /* Keep all images the same height */
 	flex: 0 0 auto; /* Keep the image at its natural height */
 	border-radius: 2px;
-	margin-bottom: 0;
+	margin: 10px 0; /* Add space around the image */
+	object-fit: cover; /* Fill the box without stretching */
 }
 
 /* Hide descriptions until hover */
@@ -184,8 +264,9 @@ header p {
 	padding: 20px;
 	color: #ffffff; /* High contrast on blue overlay */
 	display: block; /* Start text from the top-left */
-	text-align: left;
-	font-size: 16px; /* Base size before hover */
+	text-align: right; /* RTL text alignment */
+	direction: rtl; /* Force RTL flow inside the overlay */
+	font-size: 14px; /* Base size before hover */
 	opacity: 0;
 	transition: opacity 0.25s ease;
 	z-index: 1; /* Sit above the overlay */
@@ -193,13 +274,13 @@ header p {
 
 .card:hover p {
 	opacity: 1;
-	font-size: 18px; /* Larger text on hover */
+	font-size: 16px; /* Larger text on hover */
 }
 
 /* Keep the description visible when a card is toggled open */
 .card.is-open p {
 	opacity: 1;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 /* Responsive tweaks for smaller screens */
@@ -232,11 +313,11 @@ header p {
 	}
 
 	.card h2 {
-		font-size: 18px;
+		font-size: 17px;
 	}
 
 	.card h3 {
-		font-size: 16px;
+		font-size: 15px;
 	}
 }
 
